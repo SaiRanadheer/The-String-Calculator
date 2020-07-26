@@ -1,6 +1,7 @@
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
+import static org.testng.FileAssert.fail;
 
 @Test
 public class TestStringCalculator {
@@ -36,4 +37,12 @@ public class TestStringCalculator {
         assertEquals(calculator.add("//;\n1;2"), 3);
     }
 
+    public void negativeNumbersNotSupported(){
+        try{
+            calculator.add("1,2,-3,-7,8");
+
+        } catch (Exception e){
+            assertEquals(e.getMessage(), "negatives not allowed -3 -7");
+        }
+    }
 }
