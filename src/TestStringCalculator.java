@@ -45,4 +45,8 @@ public class TestStringCalculator {
             assertEquals(e.getMessage(), "negatives not allowed -3 -7");
         }
     }
+
+    public void numberAboveThreshold(){
+        assertEquals(calculator.add("//;\n2;1001"), 2);
+    }
 }

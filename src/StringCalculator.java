@@ -17,7 +17,10 @@ public class StringCalculator {
             if (numberValues.length == 1) {
                 int number = stringToInt(numbers);
                 if(number > 0) {
-                    return number;
+                    if(number < 1000)
+                        return number;
+                    else
+                        return 0;
                 } else {
                     throw new IllegalArgumentException("negatives not allowed " + number);
                 }
@@ -26,6 +29,11 @@ public class StringCalculator {
                     int firstNumber = stringToInt(numberValues[0]);
                     int secondNumber = stringToInt(numberValues[1]);
                     if(firstNumber > 0 && secondNumber > 0){
+                        if (firstNumber > 1000){
+                            return secondNumber;
+                        } else if(secondNumber > 1000){
+                            return firstNumber;
+                        }
                         return firstNumber + secondNumber;
                     }else if (firstNumber < 0){
                         if (secondNumber < 0){
@@ -46,7 +54,9 @@ public class StringCalculator {
                             negativeNumbersStr = negativeNumbersStr.concat(String.valueOf(number)).concat(" ");
                             continue;
                         }
-                        totalSum += number;
+                        if(number < 1000) {
+                            totalSum += number;
+                        }
                     }
                     negativeNumbersStr = negativeNumbersStr.trim();
                     if(negativeNumbersStr.isEmpty()) {
