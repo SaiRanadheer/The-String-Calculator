@@ -32,4 +32,8 @@ public class TestStringCalculator {
         assertEquals(calculator.add("1\n2,3"), 6);
     }
 
+    public void differentDelimitersSupported(){
+        assertEquals(calculator.add("//;\n1;2"), 3);
+    }
+
 }

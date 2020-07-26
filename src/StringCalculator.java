@@ -3,8 +3,14 @@ public class StringCalculator {
         if (numbers == null || isEmpty(numbers)) {
             return 0;
         } else {
-            numbers = numbers.replace("\n", ",");
-            String[] numberValues = numbers.split(",");
+            boolean delimiterChanged = numbers.startsWith("//");
+            String delimiter = ",";
+            if(delimiterChanged){
+                delimiter = numbers.substring(2, numbers.indexOf("\n"));
+                numbers = numbers.substring(numbers.indexOf("\n")+1);
+            }
+            numbers = numbers.replace("\n", delimiter);
+            String[] numberValues = numbers.split(delimiter);
             if (numberValues.length == 1) {
                 return stringToInt(numbers);
             } else {
