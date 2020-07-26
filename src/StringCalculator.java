@@ -3,6 +3,7 @@ public class StringCalculator {
         if (numbers == null || isEmpty(numbers)) {
             return 0;
         } else {
+            numbers = numbers.replace("\n", ",");
             String[] numberValues = numbers.split(",");
             if (numberValues.length == 1) {
                 return stringToInt(numbers);

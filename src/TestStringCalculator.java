@@ -28,4 +28,8 @@ public class TestStringCalculator {
         assertEquals(calculator.add("123,15,42,66"), 246);
     }
 
+    public void numbersWithLineSeparatorsCommaDelimiter(){
+        assertEquals(calculator.add("1\n2,3"), 6);
+    }
+
 }
