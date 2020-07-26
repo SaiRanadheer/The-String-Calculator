@@ -49,4 +49,8 @@ public class TestStringCalculator {
     public void numberAboveThreshold(){
         assertEquals(calculator.add("//;\n2;1001"), 2);
     }
+
+    public void biggerDelimiter(){
+        assertEquals(calculator.add("//[***]\n1***2***3"), 6);
+    }
 }

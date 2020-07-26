@@ -6,9 +6,17 @@ public class StringCalculator {
         if (numbers == null || isEmpty(numbers)) {
             return 0;
         } else {
+            boolean biggerDelimiter = numbers.startsWith("//[");
             boolean delimiterChanged = numbers.startsWith("//");
+            numbers = numbers.replace("*", ",");
+            numbers = numbers.replace("+", ",");
+            numbers = numbers.replace("^", ",");
+
             String delimiter = ",";
-            if(delimiterChanged){
+            if(biggerDelimiter){
+                delimiter = numbers.substring(3, numbers.indexOf("\n")-1);
+                numbers = numbers.substring(numbers.indexOf("\n")+1);
+            } else if(delimiterChanged){
                 delimiter = numbers.substring(2, numbers.indexOf("\n"));
                 numbers = numbers.substring(numbers.indexOf("\n")+1);
             }
