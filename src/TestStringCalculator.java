@@ -23,4 +23,9 @@ public class TestStringCalculator {
     public void singleCommaDelimiter(){
         assertEquals(calculator.add("123,15"), 138);
     }
+
+    public void unlimitedNumbersCommaDelimiter(){
+        assertEquals(calculator.add("123,15,42,66"), 246);
+    }
+
 }

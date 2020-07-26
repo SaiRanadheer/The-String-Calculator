@@ -6,11 +6,18 @@ public class StringCalculator {
             String[] numberValues = numbers.split(",");
             if (numberValues.length == 1) {
                 return stringToInt(numbers);
-            } else if (numberValues.length == 2) {
-                return stringToInt(numberValues[0]) + stringToInt(numberValues[1]);
+            } else {
+                if (numberValues.length == 2) {
+                    return stringToInt(numberValues[0]) + stringToInt(numberValues[1]);
+                } else {
+                    int totalSum = 0;
+                    for (String numberValue : numberValues) {
+                        totalSum += stringToInt(numberValue);
+                    }
+                    return totalSum;
+                }
             }
         }
-        return -1;
     }
 
     private boolean isEmpty(String input) {
