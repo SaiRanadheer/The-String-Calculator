@@ -6,17 +6,35 @@ public class StringCalculator {
         if (numbers == null || isEmpty(numbers)) {
             return 0;
         } else {
+
+            long multipleDelimitersCount = numbers.chars().filter(ch -> ch == '[').count();
             boolean biggerDelimiter = numbers.startsWith("//[");
             boolean delimiterChanged = numbers.startsWith("//");
-            numbers = numbers.replace("*", ",");
-            numbers = numbers.replace("+", ",");
-            numbers = numbers.replace("^", ",");
 
             String delimiter = ",";
-            if(biggerDelimiter){
+            if(multipleDelimitersCount > 1){
+                int startIndex = numbers.indexOf("[") + 1;
+                int endIndex = numbers.indexOf("]");
+                List<String> delimiters = new ArrayList<>();
+                for(int i = 0; i < multipleDelimitersCount; i++){
+                    delimiters.add(numbers.substring(startIndex, endIndex));
+                    startIndex = numbers.indexOf("[", startIndex) + 1;
+                    endIndex = numbers.indexOf("]", startIndex);
+                }
+                for(int i = 0; i < multipleDelimitersCount; i++){
+                    numbers = numbers.replace(delimiters.get(i), delimiter);
+                }
+                numbers = numbers.substring(numbers.indexOf("\n")+1);
+            } else if(biggerDelimiter){
+                numbers = numbers.replace("*", ",");
+                numbers = numbers.replace("+", ",");
+                numbers = numbers.replace("^", ",");
                 delimiter = numbers.substring(3, numbers.indexOf("\n")-1);
                 numbers = numbers.substring(numbers.indexOf("\n")+1);
             } else if(delimiterChanged){
+                numbers = numbers.replace("*", ",");
+                numbers = numbers.replace("+", ",");
+                numbers = numbers.replace("^", ",");
                 delimiter = numbers.substring(2, numbers.indexOf("\n"));
                 numbers = numbers.substring(numbers.indexOf("\n")+1);
             }
